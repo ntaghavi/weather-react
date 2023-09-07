@@ -8,10 +8,11 @@ export default function Footer() {
       <p className="footer">
         To See my GitHub Repository click
         <a
-          href="https://github.com/ntaghavi/shecodes-git-app"
+          href="https://github.com/ntaghavi/weather-react"
           target="_blank"
           rel="noreferrer"
         >
+            {" "}
           Here
         </a>
         !
