@@ -133,3 +133,18 @@
 #farenheit:hover {
   cursor: pointer;
 }
+
+#spare-unit {
+  font-size: 15px;
+  margin-top: 0;
+  font-style: normal;
+  color: gray;
+}
+#spare-unit:hover {
+  color: #8064e9;
+}
+#unit:hover {
+  color: #5e41a7;
+}
+#unit {
+}

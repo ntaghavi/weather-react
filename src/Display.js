@@ -72,7 +72,7 @@ function Display({ city = "Tehran", show = false }) {
       "Friday",
       "Saturday",
     ];
-    setTemperature(`${Math.round(response.data.main.temp)}°C`);
+    setTemperature(Math.round(response.data.main.temp));
     setDesc(response.data.weather[0].description);
     setHumidity(`${Math.round(response.data.main.humidity)} %`);
     setWind(`${Math.round(response.data.wind.speed)} km/h`);
@@ -94,7 +94,7 @@ function Display({ city = "Tehran", show = false }) {
     return (
       <div>
         <Current city={city} data={data_dict} />
-        <Forecast />
+        <Forecast city={city} />
       </div>
     );
   } else {
@@ -106,7 +106,7 @@ function Display({ city = "Tehran", show = false }) {
     return (
       <div>
         <Current city="Tehran" data={data_dict} />
-        <Forecast />
+        <Forecast city="Tehran" />
       </div>
     );
   }
