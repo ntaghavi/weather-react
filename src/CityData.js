@@ -5,21 +5,20 @@ export default function CityData({ city, data }) {
       <h1 className="card-title day" id="city-name">
         {city}
       </h1>
-      <p className="card-subtitle">
-        <span id="city-current-wday"></span>
-        <span className="clk" id="city-current-clock"></span>
-      </p>
-      <p className="card-subtitle w-stat" id="weather-d"></p>
+
       <p className="card-subtitle w-stat">
-        Humidity: <span id="city-current-humidity">{data.humidity}</span>
-      </p>
-      <p className="card-subtitle w-stat">
-        Wind Speed:
-        <span id="city-current-wind"> {data.windSpeed} </span>
+        <span id="city-current-description" className="">
+          {" "}
+          {data.weekDay} {data.clock}
+        </span>
       </p>
       <p className="card-subtitle w-stat">
-        <span id="city-current-description"> {data.description} </span>
+        <span id="city-current-description" className="mb-5">
+          {" "}
+          {data.description}{" "}
+        </span>
       </p>
+      <div className="float-left">{data.icon}</div>
     </div>
   );
 }

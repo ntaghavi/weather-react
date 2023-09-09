@@ -73,17 +73,19 @@
   text-align: right;
   padding-right: 30px;
 }
-.emoji {
-  display: inline;
-  max-width: 100px;
-}
+
 .temp {
   border: none;
 }
 .temperature {
   font-weight: bolder;
-  font-size: xx-large;
-  display: inline;
+  font-size: 60px;
+  text-align: right;
+  margin-right: 50px;
+}
+.w-data {
+  text-align: right;
+  margin-right: 50px;
 }
 .forecast {
   margin-bottom: 30px;
