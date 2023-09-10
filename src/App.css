@@ -146,5 +146,6 @@
 #unit:hover {
   color: #5e41a7;
 }
-#unit {
+.align-center {
+  text-align: center;
 }

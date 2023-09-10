@@ -1,65 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-//import ReactAnimatedWeather from "react-animated-weather";
-function Forecast({ city, show = false }) {
-  let urlKey = "8cd9be374c7c96c39a9fe73f4bf2f055";
-  // function handleEmoji(iconCode) {
-  //   const codeMapping = {
-  //     "01d": "CLEAR_DAY",
-  //     "01n": "CLEAR_NIGHT",
-  //     "02d": "PARTLY_CLOUDY_DAY",
-  //     "02n": "PARTLY_CLOUDY_NIGHT",
-  //     "03d": "PARTLY_CLOUDY_DAY",
-  //     "03n": "PARTLY_CLOUDY_NIGHT",
-  //     "04d": "CLOUDY",
-  //     "04n": "CLOUDY",
-  //     "09d": "RAIN",
-  //     "09n": "RAIN",
-  //     "10d": "RAIN",
-  //     "10n": "RAIN",
-  //     "11d": "RAIN",
-  //     "11n": "RAIN",
-  //     "13d": "SNOW",
-  //     "13n": "SNOW",
-  //     "50d": "FOG",
-  //     "50n": "FOG",
-  //   };
+import ForecastDaily from "./ForecastDaily";
 
-  //   return (
-  //     <div className="canvas emoji">
-  //       <ReactAnimatedWeather
-  //         icon={codeMapping[iconCode]}
-  //         color="#1e1e1e"
-  //         size={64}
-  //         animate={true}
-  //       />
-  //     </div>
-  //   );
-  // }
-  function handleForecast(response) {
-    // to be fixed
-    let forecasts = response.data.daily;
-    console.log(forecasts);
-  }
-  function handleForecastUrl(response) {
-    let coords = [
-      response.data[0].lat.toFixed(2),
-      response.data[0].lon.toFixed(2),
-    ];
-    console.log(coords);
-    let forecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords[0]}&lon=${coords[1]}&cnt=5&appid=${urlKey}&&units=metric`;
+export default function Forecast(props) {
+  let [loaded, setLoaded] = useState(false);
+  let [forecast, setForecast] = useState(null);
 
-    axios.get(forecastUrl).then(handleForecast);
-  }
-  function getCityCoords(city) {
-    let cityApiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${urlKey}`;
+  useEffect(() => {
+    setLoaded(false);
+  }, [props.coordinates]);
 
-    axios.get(cityApiUrl).then(handleForecastUrl);
+  function handleResponse(response) {
+    setForecast(response.data.daily);
+    setLoaded(true);
   }
-  if (show) {
-    getCityCoords(city);
+
+  if (loaded) {
+    return (
+      <div className="forecast">
+        <div className="row">
+          {forecast.map((dailyForecast, index) => {
+            if (index < 5) {
+              return (
+                <div className="col" key={index}>
+                  <ForecastDaily data={dailyForecast} />
+                </div>
+              );
+            } else return null;
+          })}
+        </div>
+      </div>
+    );
+  } else {
+    let apiKey = "8ca7dd4e61360b90fb66918853670e48";
+    let longitude = props.coordinates.lon;
+    let latitude = props.coordinates.lat;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+    console.log(`${latitude} , ${longitude}`);
+    axios.get(apiUrl).then(handleResponse);
+
+    return null;
   }
-  return <div className="forecast row" id="forecast-section"></div>;
 }
-
-export default Forecast;

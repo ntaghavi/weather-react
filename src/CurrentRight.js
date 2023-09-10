@@ -43,11 +43,17 @@ export default function CurrentRight({ data }) {
         </p>
         <p className="card-subtitle w-stat" id="weather-d"></p>
         <p className="card-subtitle w-stat">
-          Humidity: <span id="city-current-humidity">{data.humidity}</span>
+          Humidity:{" "}
+          <span id="city-current-humidity">
+            {data.humidity} {" %"}
+          </span>
         </p>
         <p className="card-subtitle w-stat">
           Wind Speed:
-          <span id="city-current-wind"> {data.windSpeed} </span>
+          <span id="city-current-wind">
+            {" "}
+            {data.wind} {" km/h"}
+          </span>
         </p>
       </div>
     </div>

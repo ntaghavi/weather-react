@@ -8,7 +8,6 @@ export default function Header() {
         alt=""
         class="icon"
       />
-      <button id="gps">Your Location</button>
     </div>
   );
 }
